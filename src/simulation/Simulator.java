@@ -1,7 +1,7 @@
 package simulation;
 
 import rakete.*;
-import steuerung.*;
+import view.Anzeige;
 
 import java.lang.reflect.Constructor;
 import java.util.Locale;
@@ -17,9 +17,11 @@ public class Simulator implements Runnable, ZeitUndRaum {
 
     private RaketeAriane5 rakete;
     private RaketenSteuerung control;
+    private Anzeige view;
 
     private Simulator(String raketenSteuerungKlasse) {
         rakete = new RaketeAriane5();
+        view = new Anzeige(this);
         try {
             Constructor<?> c = Class.forName(raketenSteuerungKlasse).getDeclaredConstructor(
                     Class.forName("simulation.ZeitUndRaum"), Class.forName("rakete.Rakete"));
@@ -47,6 +49,9 @@ public class Simulator implements Runnable, ZeitUndRaum {
     }
 
     public void run() {
+        view.setStatus("Ready.");
+
+        rocket_not_running:
         while (timeCount < 1e6) {
             /* simuliere Raketenbewegung */
             RaketeAriane5.RaketenSignal ttick = rakete.timeTick();
@@ -54,17 +59,18 @@ public class Simulator implements Runnable, ZeitUndRaum {
                 case CRASHED:
                     control.crashed();
                     crashed();
-                    break;
+                    break rocket_not_running;
                 case NOGRAVITIVY:
                     control.lostInSpace();
                     lostInSpace();
-                    break;
+                    break rocket_not_running;
                 case LANDED:
                     control.gelandet();
                     gelandet();
-                    break;
+                    break rocket_not_running;
                 case LAUNCHED:
                     launched();
+                    view.setStatus("Launched.");
                 default:
                     /* frage Raketensteuerung ab */
                     float brennRate = control.timeTick();
@@ -75,6 +81,7 @@ public class Simulator implements Runnable, ZeitUndRaum {
                     rakete.brennrateSetzen(brennRate);
             }
 
+            view.redraw();
             try {
                 Thread.sleep((long) (1000 * timeStep));
             } catch (InterruptedException e) {
@@ -82,6 +89,8 @@ public class Simulator implements Runnable, ZeitUndRaum {
 
             timeCount++;
         }
+
+        view.redraw();
     }
 
     private void launched() {
@@ -90,17 +99,17 @@ public class Simulator implements Runnable, ZeitUndRaum {
 
     private void gelandet() {
         log("Rakete gelandet!");
-        System.exit(0);
+        view.setStatus("Landed.");
     }
 
     private void crashed() {
         log("Rakete gecrasht!");
-        System.exit(1);
+        view.setStatus("Crashed!");
     }
 
     private void lostInSpace() {
         log("Rakete verliess die Erdanziehungskraft!");
-        System.exit(2);
+        view.setStatus("Out of gravity!");
     }
 
     private void logVerbose(String msg) {
