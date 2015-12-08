@@ -3,29 +3,27 @@ package simulation;
 import rakete.*;
 import steuerung.*;
 
+import java.lang.reflect.Constructor;
 import java.util.Locale;
 
 /**
  * Created by Roman on 06.12.2015.
  */
-public class Simulator implements Runnable {
+public class Simulator implements Runnable, ZeitUndRaum {
     /* Zeitschrittlänge in Sekunden */
     public static final float timeStep = 0.1f;
     public static final float gravitation = 9.8f;
-    public static long timeCount = 0;
+    private static long timeCount = 0;
 
     private RaketeAriane5 rakete;
     private RaketenSteuerung control;
 
-    public Simulator() {
-        rakete = new RaketeAriane5();
-        control = new SteuerungDoof();
-    }
-
-    public Simulator(String raketenSteuerungKlasse) {
+    private Simulator(String raketenSteuerungKlasse) {
         rakete = new RaketeAriane5();
         try {
-            control = (RaketenSteuerung) Class.forName(raketenSteuerungKlasse).newInstance();
+            Constructor<?> c = Class.forName(raketenSteuerungKlasse).getDeclaredConstructor(
+                    Class.forName("simulation.ZeitUndRaum"), Class.forName("rakete.Rakete"));
+            control = (RaketenSteuerung) c.newInstance(new Object[] {this, rakete});
         } catch (ClassNotFoundException cnfe) {
             System.err.println("Raketensteuerung nicht gefunden: " + raketenSteuerungKlasse);
             System.exit(8);
@@ -41,7 +39,7 @@ public class Simulator implements Runnable {
         if (args.length > 0)
             sim = new Simulator(args[0]);
         else
-            sim = new Simulator();
+            sim = new Simulator("steuerung.SteuerungDoof");
 
         Thread me = new Thread(sim);
         me.start();
@@ -68,7 +66,7 @@ public class Simulator implements Runnable {
                     launched();
                 default:
                     /* frage Raketensteuerung ab */
-                    float brennRate = control.timeTick(rakete);
+                    float brennRate = control.timeTick();
                     if (rakete.istGestartet())
                         logVerbose("running");
                     else if(timeCount % 50 == 0)
@@ -112,5 +110,15 @@ public class Simulator implements Runnable {
     private void log(String msg) {
         System.out.printf(Locale.US, "%2d - %s v: %.2fm/s fuel: %.3fL%n",
                 timeCount, msg, rakete.getGeschwindigkeit(), rakete.getBrennstoffVorrat());
+    }
+
+    @Override
+    public Rakete getRakete() {
+        return rakete;
+    }
+
+    @Override
+    public float getTime() {
+        return timeCount * timeStep;
     }
 }

@@ -3,11 +3,17 @@ package steuerung;
 import rakete.Rakete;
 import rakete.RaketenSteuerung;
 import simulation.Simulator;
+import simulation.ZeitUndRaum;
 
 /**
  * Created by Roman on 06.12.2015.
  */
-public class SteuerungDoof implements RaketenSteuerung {
+public class SteuerungDoof extends AbstractSteuerung {
+
+    public SteuerungDoof(ZeitUndRaum sim, Rakete rakete) {
+        super(sim, rakete);
+    }
+
     @Override
     public void crashed() {
 
@@ -24,8 +30,8 @@ public class SteuerungDoof implements RaketenSteuerung {
     }
 
     @Override
-    public float timeTick(Rakete rakete) {
-        if (Simulator.timeCount < 20)
+    public float timeTick() {
+        if (getTime() < 2.0)
             return 70;
         return 0;
     }
