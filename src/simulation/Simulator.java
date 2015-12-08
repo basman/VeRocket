@@ -3,6 +3,8 @@ package simulation;
 import rakete.*;
 import steuerung.*;
 
+import java.util.Locale;
+
 /**
  * Created by Roman on 06.12.2015.
  */
@@ -103,12 +105,12 @@ public class Simulator implements Runnable {
     }
 
     private void logVerbose(String msg) {
-        System.out.println(timeCount + " - " + msg + " h: " + rakete.getHoehe() + "m v: " + rakete.getGeschwindigkeit() +
-                "m/s fuel: " + rakete.getBrennstoffVorrat() + " l  f.rate: " + rakete.getBrennrate());
+        System.out.printf(Locale.US, "%2d - %s h: %.3fm v: %.3fm/s fuel: %.3fL f.rate: %.1fL/s%n",
+                timeCount, msg, rakete.getHoehe(), rakete.getGeschwindigkeit(), rakete.getBrennstoffVorrat(), rakete.getBrennrate());
     }
 
     private void log(String msg) {
-        System.out.println(timeCount + " - " + msg + " v: " + rakete.getGeschwindigkeit() +
-                "m/s fuel: " + rakete.getBrennstoffVorrat());
+        System.out.printf(Locale.US, "%2d - %s v: %.2fm/s fuel: %.3fL%n",
+                timeCount, msg, rakete.getGeschwindigkeit(), rakete.getBrennstoffVorrat());
     }
 }

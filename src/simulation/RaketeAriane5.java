@@ -2,6 +2,8 @@ package simulation;
 
 import rakete.Rakete;
 
+import java.util.Locale;
+
 /**
  * Created by Roman on 06.12.2015.
  */
@@ -100,7 +102,8 @@ public class RaketeAriane5 implements Rakete {
                 this.launched = true;
                 ret = RaketenSignal.LAUNCHED;
             } else if(resultierendeBeschleunigung <= 0) {
-                System.out.println("Warnung: Beschleunigung reicht nicht zum Abheben. " + resultierendeBeschleunigung);
+                System.out.printf(Locale.US, "Warnung: Beschleunigung reicht nicht zum Abheben. (%.2fm/s2)%n",
+                        resultierendeBeschleunigung);
             }
         }
 
