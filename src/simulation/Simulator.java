@@ -29,6 +29,7 @@ public class Simulator implements Runnable, ZeitUndRaum {
             System.exit(8);
         } catch (Exception e) {
             System.err.println("Raketensteuerung konnte nicht geladen werden: " + e.getMessage());
+            e.printStackTrace();
             System.exit(9);
         }
     }
