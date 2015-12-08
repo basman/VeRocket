@@ -47,7 +47,7 @@ public class Simulator implements Runnable, ZeitUndRaum {
     }
 
     public void run() {
-        while (true) {
+        while (timeCount < 1e6) {
             /* simuliere Raketenbewegung */
             RaketeAriane5.RaketenSignal ttick = rakete.timeTick();
             switch (ttick) {
