@@ -32,6 +32,12 @@ public class GraphPanel extends JPanel {
     }
 
     @Override
+    public Dimension getPreferredSize() {
+        /* enforce same size as the parent LeftPanel */
+        return getParent().getSize();
+    }
+
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
