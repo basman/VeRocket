@@ -33,6 +33,8 @@ public class SteuerungDoof extends AbstractSteuerung {
     public float timeTick() {
         if (getTime() < 2.0)
             return 70;
+        else if(getTime() >= 4.5 && getTime() <= 5.3)
+            return 87.4f;
         return 0;
     }
 }
