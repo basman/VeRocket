@@ -70,7 +70,7 @@ public class Simulator implements Runnable, ZeitUndRaum {
                     /* frage Raketensteuerung ab */
                     float brennRate = control.timeTick();
                     if (rakete.istGestartet())
-                        logVerbose("running");
+                        logVerbose("");
                     else if(timeCount % 50 == 0)
                         logVerbose("ready");
                     rakete.brennrateSetzen(brennRate);
@@ -108,13 +108,13 @@ public class Simulator implements Runnable, ZeitUndRaum {
     }
 
     private void logVerbose(String msg) {
-        System.out.printf(Locale.US, "%2d - %s h: %.3fm v: %.3fm/s fuel: %.3fL f.rate: %.1fL/s%n",
-                timeCount, msg, rakete.getHoehe(), rakete.getGeschwindigkeit(), rakete.getBrennstoffVorrat(), rakete.getBrennrate());
+        System.out.printf(Locale.US, "%.1f - h: %.3fm v: %.3fm/s fuel: %.3fL f.rate: %.1fL/s %s%n",
+                timeCount/10f, rakete.getHoehe(), rakete.getGeschwindigkeit(), rakete.getBrennstoffVorrat(), rakete.getBrennrate(), msg);
     }
 
     private void log(String msg) {
-        System.out.printf(Locale.US, "%2d - %s v: %.2fm/s fuel: %.3fL%n",
-                timeCount, msg, rakete.getGeschwindigkeit(), rakete.getBrennstoffVorrat());
+        System.out.printf(Locale.US, "%.1f v: %.2fm/s fuel: %.3fL %s%n",
+                timeCount/10f, rakete.getGeschwindigkeit(), rakete.getBrennstoffVorrat(), msg);
     }
 
     @Override

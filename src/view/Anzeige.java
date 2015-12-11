@@ -46,7 +46,8 @@ public class Anzeige implements ActionListener {
     }
 
     private void initControlSelection() {
-        cboxController.addItem("Doof");
+        cboxController.addItem("Langlauf");
+        cboxController.addItem("Crashtest");
         cboxController.addItem("Icarus");
     }
 

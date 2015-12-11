@@ -110,6 +110,12 @@ public class RaketeAriane5 implements Rakete {
             }
         }
 
+        if(this.hoehe < 0) {
+            this.hoehe = 0;
+            if (this.geschwindigkeit < 0)
+                this.geschwindigkeit = 0;
+        }
+
         return ret;
     }
 }
