@@ -13,19 +13,21 @@ public class Simulator implements Runnable, ZeitUndRaum {
     /* Zeitschrittlänge in Sekunden */
     public static final float timeStep = 0.1f;
     public static final float gravitation = 9.8f;
-    private static long timeCount = 0;
 
+    private long timeCount = 0;
+    private boolean stop = false;
     private RaketeAriane5 rakete;
     private RaketenSteuerung control;
     private Anzeige view;
 
-    private Simulator(String raketenSteuerungKlasse) {
+    /* constructor used by Anzeige */
+    public Simulator(String raketenSteuerungKlasse, Anzeige view) {
         rakete = new RaketeAriane5();
-        view = new Anzeige(this);
+        this.view = view;
         try {
             Constructor<?> c = Class.forName(raketenSteuerungKlasse).getDeclaredConstructor(
                     Class.forName("simulation.ZeitUndRaum"), Class.forName("rakete.Rakete"));
-            control = (RaketenSteuerung) c.newInstance(new Object[] {this, rakete});
+            this.control = (RaketenSteuerung) c.newInstance(new Object[] {this, rakete});
         } catch (ClassNotFoundException cnfe) {
             System.err.println("Raketensteuerung nicht gefunden: " + raketenSteuerungKlasse);
             System.exit(8);
@@ -36,23 +38,16 @@ public class Simulator implements Runnable, ZeitUndRaum {
         }
     }
 
-    /* Programm Startpunkt */
-    public static void main(String args[]) {
-        Simulator sim;
-        if (args.length > 0)
-            sim = new Simulator(args[0]);
-        else
-            sim = new Simulator("steuerung.SteuerungDoof");
-
-        Thread me = new Thread(sim);
-        me.start();
+    public void stop() {
+        this.stop = true;
     }
 
     public void run() {
+        this.stop = false;
         view.setStatus("Ready.");
 
         rocket_not_running:
-        while (timeCount < 1e6) {
+        while (timeCount < 1e6 && !stop) {
             /* simuliere Raketenbewegung */
             RaketeAriane5.RaketenSignal ttick = rakete.timeTick();
             switch (ttick) {

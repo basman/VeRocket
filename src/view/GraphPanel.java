@@ -13,14 +13,17 @@ public class GraphPanel extends JPanel {
     private ZeitUndRaum simulator;
     private ArrayList<Double> heightHistory = new ArrayList<>();
 
-    public GraphPanel(ZeitUndRaum sim) {
+    public GraphPanel() {
         super();
-        this.simulator = sim;
     }
 
     public void update() {
         heightHistory.add(simulator.getRakete().getHoehe());
         this.repaint();
+    }
+
+    public void setSimulator(ZeitUndRaum simulator) {
+        this.simulator = simulator;
     }
 
     @Override
