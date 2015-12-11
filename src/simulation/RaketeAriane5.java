@@ -11,6 +11,7 @@ public class RaketeAriane5 implements Rakete {
 
     public static final float maxFuelRate = 100f;
     public static final float maxHeight = 100000f;
+    public static final float maxFuel = 500f;
 
     public enum RaketenSignal {
         OK,
@@ -33,7 +34,7 @@ public class RaketeAriane5 implements Rakete {
 
     public RaketeAriane5() {
         leergewicht = 10;
-        brennstoffVorrat = 500; // voll getankt
+        brennstoffVorrat = maxFuel; // voll getankt
 
         brennrate = 0;
         geschwindigkeit = 0;
@@ -45,6 +46,8 @@ public class RaketeAriane5 implements Rakete {
     public float getGeschwindigkeit() { return geschwindigkeit; }
     public float getBrennstoffVorrat() { return brennstoffVorrat; }
     public boolean istGestartet() { return launched; }
+    public float getTankvolumen() { return maxFuel; }
+
 
     void brennrateSetzen(float brennrate) {
         /* ungültige Werte werden zurechtgestutzt */

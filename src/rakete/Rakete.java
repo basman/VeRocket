@@ -9,5 +9,6 @@ public interface Rakete {
     float getBrennrate();
     float getGeschwindigkeit();
     float getBrennstoffVorrat();
+    float getTankvolumen();
     boolean istGestartet();
 }
