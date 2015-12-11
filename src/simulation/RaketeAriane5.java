@@ -10,7 +10,7 @@ import java.util.Locale;
 public class RaketeAriane5 implements Rakete {
 
     public static final float maxFuelRate = 100f;
-    public static final float maxHeight = 100000f;
+    public static final float maxHeight = 4900f;
     public static final float maxFuel = 500f;
 
     public enum RaketenSignal {

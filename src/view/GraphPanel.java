@@ -17,6 +17,10 @@ public class GraphPanel extends JPanel {
         super();
     }
 
+    private void init() {
+        heightHistory = new ArrayList<>();
+    }
+
     public void update() {
         heightHistory.add(simulator.getRakete().getHoehe());
         this.repaint();
@@ -24,6 +28,7 @@ public class GraphPanel extends JPanel {
 
     public void setSimulator(ZeitUndRaum simulator) {
         this.simulator = simulator;
+        init();
     }
 
     @Override

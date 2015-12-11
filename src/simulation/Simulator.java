@@ -104,7 +104,7 @@ public class Simulator implements Runnable, ZeitUndRaum {
 
     private void lostInSpace() {
         log("Rakete verliess die Erdanziehungskraft!");
-        view.setStatus("Out of gravity!");
+        view.setStatus("Lost in space!");
     }
 
     private void logVerbose(String msg) {

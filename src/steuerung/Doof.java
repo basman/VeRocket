@@ -8,9 +8,9 @@ import simulation.ZeitUndRaum;
 /**
  * Created by Roman on 06.12.2015.
  */
-public class SteuerungDoof extends AbstractSteuerung {
+public class Doof extends AbstractSteuerung {
 
-    public SteuerungDoof(ZeitUndRaum sim, Rakete rakete) {
+    public Doof(ZeitUndRaum sim, Rakete rakete) {
         super(sim, rakete);
     }
 
