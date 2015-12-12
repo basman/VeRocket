@@ -30,7 +30,7 @@ public class Langlauf extends AbstractSteuerung {
     @Override
     public float timeTick() {
         if(rakete.getHoehe() < 10)
-            return 70;
+            return 80 * Math.max(rakete.getBrennstoffVorrat() / rakete.getTankvolumen(), rakete.getLeergewicht());
         else
             return 0;
     }
