@@ -109,23 +109,22 @@ public class GraphPanel extends JPanel {
         /* draw graph */
         if (heightHistory.size() > 0) {
             int skipInterval = 0;
-            int xStep;
+            float xStep;
             if (width - 2*hMargin >= heightHistory.size()) {
-                xStep = (int)(time / xTime * (width - 2*hMargin) / heightHistory.size());
+                xStep = time / xTime * (width - 2*hMargin) / heightHistory.size();
             } else {
                 // more samples than pixels: drop some samples
-                xStep = 1;
+                xStep = 1f;
                 int overflow = (int)(heightHistory.size() - time / xTime * (width - 2*hMargin));
                 skipInterval = heightHistory.size() / overflow;
             }
-            int i = 0;
-            int xc = hMargin;
+            int iSample = 0;
+            float xc = hMargin;
             for (Double h : heightHistory) {
-                if (skipInterval > 0 && i++ % skipInterval == 0) // drop every overrun'th sample
+                if (skipInterval > 0 && iSample++ % skipInterval == 0) // drop every overrun'th sample
                     continue;
                 y = (int) (height - bMargin - h / yHeight * (height - tMargin - bMargin));
-                g.drawOval(xc, y, 2, 2);
-                // FIXME: x scaling wrong (samples not in sync with scale)
+                g.drawOval((int)xc, y, 2, 2);
                 xc += xStep;
             }
         }
