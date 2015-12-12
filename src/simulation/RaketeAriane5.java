@@ -47,6 +47,7 @@ public class RaketeAriane5 implements Rakete {
     public float getBrennstoffVorrat() { return brennstoffVorrat; }
     public boolean istGestartet() { return launched; }
     public float getTankvolumen() { return maxFuel; }
+    public float getLeergewicht() { return leergewicht; }
 
 
     void brennrateSetzen(float brennrate) {
