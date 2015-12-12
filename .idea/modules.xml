@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RocketSim.iml" filepath="$PROJECT_DIR$/RocketSim.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VeRocket.iml" filepath="$PROJECT_DIR$/VeRocket.iml" />
     </modules>
   </component>
 </project>
