@@ -15,7 +15,8 @@ public class Simulator implements Runnable, ZeitUndRaum {
     public static final float gravitation = 9.8f;
 
     private long timeCount = 0;
-    private boolean stop = false;
+    private boolean stop;
+    private boolean paused;
     private RaketeAriane5 rakete;
     private RaketenSteuerung control;
     private Anzeige view;
@@ -42,8 +43,14 @@ public class Simulator implements Runnable, ZeitUndRaum {
         this.stop = true;
     }
 
+    public void pause() {
+        this.paused = !this.paused;
+    }
+
+
     public void run() {
         this.stop = false;
+        this.paused = false;
         view.setStatus("Ready.");
 
         rocket_not_running:
@@ -83,9 +90,17 @@ public class Simulator implements Runnable, ZeitUndRaum {
             }
 
             timeCount++;
+
+            /* pause simulation */
+            while (this.paused && !this.stop) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                }
+            }
         }
 
-        view.redraw();
+        view.simulationCompleted();
     }
 
     private void launched() {

@@ -25,6 +25,7 @@ public class Anzeige implements ActionListener {
     private JLabel lblStatus;
     private JButton btnStart;
     private JComboBox cboxController;
+    private JButton btnPause;
     private GraphPanel gPanel;
 
     public Anzeige() {
@@ -36,6 +37,7 @@ public class Anzeige implements ActionListener {
         LeftPanel.add(gPanel);
 
         btnStart.addActionListener(this);
+        btnPause.addActionListener(this);
         initControlSelection();
 
         JFrame frame = new JFrame("VeRocket");
@@ -78,6 +80,11 @@ public class Anzeige implements ActionListener {
         this.gPanel.setSimulator(simulation);
     }
 
+    public void simulationCompleted() {
+        btnStart.setText("Start");
+        this.redraw();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnStart) {
@@ -92,7 +99,11 @@ public class Anzeige implements ActionListener {
                 Thread me = new Thread(this.simulation);
                 this.simulatorThread = me;
                 me.start();
+
+                btnStart.setText("Stop");
             }
+        } else if(e.getSource() == btnPause) {
+            this.simulation.pause();
         }
     }
 }
