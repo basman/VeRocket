@@ -1,7 +1,10 @@
 # Rocket controller simulation
 
 Use one of the controllers provided or write your own and test it visually with this simple rocket simulation.
-In this simple simulator the rocket can go only in one direction: up and down.
+In this simple simulator the rocket can go only in one direction: up and down. Air resistance is ignored.
+
+You can use this project to train your controller programming skills or to carry out a contest among different
+controller implementations whereas the softest landing and the most remaining fuel win.
 
 ## How to implement your own controller:
 
