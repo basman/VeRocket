@@ -1,4 +1,4 @@
-Rocket controller simulation
+# Rocket controller simulation
 
 Use one of the controllers provided or write your own and test it visually with this simple rocket simulation.
 In this simple simulator the rocket can go only in one direction: up and down.
