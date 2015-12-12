@@ -1,8 +1,6 @@
 package steuerung;
 
 import rakete.Rakete;
-import rakete.RaketenSteuerung;
-import simulation.Simulator;
 import simulation.ZeitUndRaum;
 
 /**
