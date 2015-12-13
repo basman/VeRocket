@@ -1,10 +1,13 @@
 # Rocket controller simulation
 
 Use one of the controllers provided or write your own and test it visually with this simple rocket simulation.
-In this simple simulator the rocket can go only in one direction: up and down. Air resistance is ignored.
+In this simulation the rocket can go only in one direction: up and down. Air resistance is ignored.
 
 You can use this project to train your controller programming skills or to carry out a contest among different
 controller implementations whereas the softest landing and the most remaining fuel win.
+
+You may add your own missions and write new controller implementations capable of achieving the mission goals.
+See the file missions.json.
 
 ## How to implement your own controller:
 
@@ -23,5 +26,6 @@ controller implementations whereas the softest landing and the most remaining fu
 
 ## Good to know:
 
+- This project can be compiled most easily using IntelliJ v15.
 - A successful rocket landing requires it to touch the ground with less than 0.5m/s descending rate.
 - As to be expected with a rocket, its weight will reduce proportionally as more fuel is used for propulsion.
