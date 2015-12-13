@@ -44,6 +44,10 @@ public class Mission {
         return name;
     }
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
     public void setSimulation(Simulator simulation) {
         this.simulation = simulation;
     }

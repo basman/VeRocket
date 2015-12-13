@@ -175,6 +175,8 @@ public class Anzeige implements ActionListener {
 
     /* called back by simulator if a single mission element _has been_ completed or if entire mission _is_ completed */
     public void missionElementCompleted() {
+        if (selectedMission.isCompleted())
+            lblStatus.setText("Mission accomplished.");
         this.lstMissionElementList.repaint();
         redraw();
     }
