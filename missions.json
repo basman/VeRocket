@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Easy ascent",
+    "elements": [
+      {
+        "altitude": 10.0,
+        "tolerance": 0.5
+      },
+      {
+        "altitude": 100.0,
+        "tolerance": 0.5,
+        "time": -1
+      }
+    ]
+  },
+
+  {
+    "name": "Higher and higher",
+    "elements": [
+      {
+        "altitude": 1000.0,
+        "tolerance": 5,
+        "time": -1
+      },
+      {
+        "altitude": 100.0,
+        "tolerance": 2,
+        "time": -1
+      },
+      {
+        "altitude": 800.0,
+        "tolerance": 5,
+        "time": -1
+      }
+    ]
+  }
+]

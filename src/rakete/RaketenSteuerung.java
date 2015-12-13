@@ -1,5 +1,6 @@
 package rakete;
 
+import mission.MissionElement;
 import rakete.Rakete;
 
 /**
@@ -18,4 +19,7 @@ public interface RaketenSteuerung {
 
     /* Rakete flog zu hoch */
     void lostInSpace();
+
+    /* Missionsziel erreicht */
+    void nextMissionElement(MissionElement miEle);
 }

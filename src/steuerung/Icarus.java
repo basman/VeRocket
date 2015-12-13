@@ -1,5 +1,6 @@
 package steuerung;
 
+import mission.MissionElement;
 import rakete.Rakete;
 import simulation.ZeitUndRaum;
 
@@ -24,6 +25,11 @@ public class Icarus extends AbstractControl {
 
     @Override
     public void lostInSpace() {
+
+    }
+
+    @Override
+    public void nextMissionElement(MissionElement miEle) {
 
     }
 

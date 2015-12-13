@@ -6,6 +6,7 @@ package rakete;
 public interface Rakete {
 
     double getHoehe();
+    double getLastHoehe();
     float getBrennrate();
     float getGeschwindigkeit();
     float getBrennstoffVorrat();

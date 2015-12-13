@@ -14,6 +14,7 @@ public class RaketeAriane5 implements Rakete {
     public static final float maxFuel = 500f;
 
     public enum RaketenSignal {
+        UNDEFINED,
         OK,
         CRASHED,
         LANDED,
@@ -24,7 +25,8 @@ public class RaketeAriane5 implements Rakete {
     private boolean launched = false;
     private boolean crashed = false;
 
-    private double hoehe;             // m
+    private double hoehe;            // m
+    private double lastHoehe;        // m
     private float geschwindigkeit;   // m/s
     private float brennstoffVorrat;  // liter
     private float brennrate;         // liter / sek
@@ -42,6 +44,7 @@ public class RaketeAriane5 implements Rakete {
     }
 
     public double getHoehe() { return hoehe; }
+    public double getLastHoehe() { return lastHoehe; }
     public float getBrennrate() { return brennrate; }
     public float getGeschwindigkeit() { return geschwindigkeit; }
     public float getBrennstoffVorrat() { return brennstoffVorrat; }
@@ -86,6 +89,7 @@ public class RaketeAriane5 implements Rakete {
 
         /* Zustandsänderungen anwenden */
         this.geschwindigkeit += geschwindigkeitsZunahmeProTick;
+        this.lastHoehe = this.hoehe;
         this.hoehe += geschwindigkeit * Simulator.timeStep;
 
         if (this.hoehe > maxHeight) {

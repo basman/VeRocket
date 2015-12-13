@@ -1,5 +1,6 @@
 package simulation;
 
+import mission.Mission;
 import rakete.*;
 import view.Anzeige;
 
@@ -20,11 +21,13 @@ public class Simulator implements Runnable, ZeitUndRaum {
     private RaketeAriane5 rakete;
     private RaketenSteuerung control;
     private Anzeige view;
+    private Mission mission;
 
     /* constructor used by Anzeige */
     public Simulator(String raketenSteuerungKlasse, Anzeige view) {
         rakete = new RaketeAriane5();
         this.view = view;
+        this.mission = view.getMission();
         try {
             Constructor<?> c = Class.forName(raketenSteuerungKlasse).getDeclaredConstructor(
                     Class.forName("simulation.ZeitUndRaum"), Class.forName("rakete.Rakete"));
@@ -81,6 +84,10 @@ public class Simulator implements Runnable, ZeitUndRaum {
                     else if(timeCount % 50 == 0)
                         logVerbose("ready");
                     rakete.brennrateSetzen(brennRate);
+            }
+
+            if (mission.timeTick(signal)) {
+                view.missionElementCompleted();
             }
 
             view.redraw();
