@@ -56,8 +56,8 @@ public class Simulator implements Runnable, ZeitUndRaum {
         rocket_not_running:
         while (timeCount < 1e6 && !stop) {
             /* simuliere Raketenbewegung */
-            RaketeAriane5.RaketenSignal ttick = rakete.timeTick();
-            switch (ttick) {
+            RaketeAriane5.RaketenSignal signal = rakete.timeTick();
+            switch (signal) {
                 case CRASHED:
                     control.crashed();
                     crashed();
