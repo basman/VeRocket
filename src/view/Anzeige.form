@@ -16,21 +16,21 @@
           </grid>
         </constraints>
         <properties>
-          <dividerLocation value="380"/>
+          <dividerLocation value="192"/>
         </properties>
         <border type="none"/>
         <children>
-          <grid id="24364" binding="LeftPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="24364" binding="RightPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
-              <splitpane position="left"/>
+              <splitpane position="right"/>
             </constraints>
             <properties/>
             <border type="none"/>
             <children/>
           </grid>
-          <grid id="3749" binding="RightPanel" layout-manager="GridBagLayout">
+          <grid id="3749" binding="LeftPanel" layout-manager="GridBagLayout">
             <constraints>
-              <splitpane position="right"/>
+              <splitpane position="left"/>
             </constraints>
             <properties/>
             <border type="none"/>

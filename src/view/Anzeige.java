@@ -1,7 +1,6 @@
 package view;
 
 import mission.Mission;
-import mission.MissionElement;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -27,8 +25,8 @@ public class Anzeige implements ActionListener {
     private Mission selectedMission;
     private HashMap<String, Mission> availableMissions = new HashMap<>();
 
-    private JPanel LeftPanel;
     private JPanel RightPanel;
+    private JPanel LeftPanel;
     private JPanel MasterPanel;
     private JSplitPane SplitPane;
     private JLabel lblAltitude;
@@ -49,7 +47,7 @@ public class Anzeige implements ActionListener {
 
     public void initUI() {
         gPanel = new GraphPanel();
-        LeftPanel.add(gPanel);
+        RightPanel.add(gPanel);
 
         btnStart.addActionListener(this);
         btnPause.addActionListener(this);
