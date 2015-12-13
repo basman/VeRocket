@@ -6,7 +6,7 @@ import simulation.ZeitUndRaum;
 /**
  * Created by Roman on 06.12.2015.
  */
-public class Langlauf extends AbstractSteuerung {
+public class Langlauf extends AbstractControl {
 
     public Langlauf(ZeitUndRaum sim, Rakete rakete) {
         super(sim, rakete);

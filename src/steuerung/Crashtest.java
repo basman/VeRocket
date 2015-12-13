@@ -6,7 +6,7 @@ import simulation.ZeitUndRaum;
 /**
  * Created by Roman on 06.12.2015.
  */
-public class Crashtest extends AbstractSteuerung {
+public class Crashtest extends AbstractControl {
 
     public Crashtest(ZeitUndRaum sim, Rakete rakete) {
         super(sim, rakete);
