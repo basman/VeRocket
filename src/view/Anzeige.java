@@ -149,9 +149,7 @@ public class Anzeige implements ActionListener {
 
             } else {
                 String controllerClass = (String) cboxController.getSelectedItem();
-
                 this.setupSimulation("steuerung." + controllerClass);
-
                 btnStart.setText("Stop");
             }
 
@@ -167,6 +165,8 @@ public class Anzeige implements ActionListener {
     private void setupSimulation(String simulatorClassName) {
         this.setSimulation(new Simulator(simulatorClassName, this));
         this.selectedMission.setSimulation(this.simulation);
+        this.selectedMission.reset();
+        lstMissionElementList.repaint();
 
         Thread me = new Thread(this.simulation);
         this.simulatorThread = me;
@@ -175,7 +175,7 @@ public class Anzeige implements ActionListener {
 
     /* called back by simulator if a single mission element _has been_ completed or if entire mission _is_ completed */
     public void missionElementCompleted() {
-        if (selectedMission.isCompleted())
+        if (selectedMission.isCompleted()) // from the moment on the mission has been completed, if-statement will apply for every time tick!
             lblStatus.setText("Mission accomplished.");
         this.lstMissionElementList.repaint();
         redraw();

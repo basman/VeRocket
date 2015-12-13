@@ -24,9 +24,8 @@ public class Mission {
 
     public Mission(String name) {
         this.name = name;
-        this.missionElementIndex = 0;
-        this.timeReachedTargetAltitude = -1;
         this.elements = new ArrayList<>();
+        init();
     }
 
     public Mission(String name, JSONArray missionElements) {
@@ -38,6 +37,13 @@ public class Mission {
             MissionElement mele = new MissionElement(me);
             elements.add(mele);
         }
+
+        init();
+    }
+
+    public void init() {
+        this.missionElementIndex = 0;
+        this.timeReachedTargetAltitude = -1;
     }
 
     public String getName() {
@@ -58,6 +64,14 @@ public class Mission {
 
     public void addElement(MissionElement me) {
         elements.add(me);
+    }
+
+    /* reset state of all mission elements */
+    public void reset() {
+        init();
+        for(MissionElement me: elements) {
+            me.reset();
+        }
     }
 
    /* called by the simulator to inform us about current rocket status

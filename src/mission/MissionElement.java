@@ -40,6 +40,10 @@ public class MissionElement {
         this.completed = true;
     }
 
+    public void reset() {
+        this.completed = false;
+    }
+
     public float getTargetAltitude() {
         return targetAltitude;
     }
